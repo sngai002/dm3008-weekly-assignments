@@ -20,7 +20,6 @@ function setup() {
   createCanvas(800, 800);
   colorMode(HSB, 360, 100, 100, 100);
   textAlign(CENTER, CENTER);
-  textSize(22);
   background(0);
 }
 
@@ -60,6 +59,7 @@ function draw() {
   //=== the "@"s ===
   // each one spins on the spot like the week 3 sketch
   noStroke();
+  textSize(22);
   for (var i = 0; i < 360; i += glyphStep) {
     var g = getRingPoint(i, breathe);
     push();
@@ -70,6 +70,19 @@ function draw() {
     pop();
   }
   pop();
+
+  //=== hint ===
+  // a solid strip behind it so the text doesn't smear with the trails when it swaps
+  // (the ring never reaches down this far)
+  fill(0);
+  rect(0, height - 50, width, 50);
+  fill(0, 0, 55);
+  textSize(14);
+  if (slowMode) {
+    text("press s to speed up", width / 2, height - 25);
+  } else {
+    text("press s to slow down", width / 2, height - 25);
+  }
 
   spin += 0.08;
 }
